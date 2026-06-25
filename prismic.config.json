@@ -4,6 +4,10 @@
     {
       "type": "home_page",
       "path": "/"
+    },
+    {
+      "type": "mentions",
+      "path": "/mentions"
     }
   ]
 }

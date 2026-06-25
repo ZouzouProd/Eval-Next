@@ -251,6 +251,77 @@ interface JobDocumentData {
  */
 export type JobDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<JobDocumentData>, "job", Lang>;
 
+type MentionsDocumentDataSlicesSlice = never
+
+/**
+ * Content for Mentions documents
+ */
+interface MentionsDocumentData {
+	/**
+	 * mentions field in *Mentions*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: mentions.mentions
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	mentions: prismic.RichTextField;
+	
+	/**
+	 * Slice Zone field in *Mentions*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: mentions.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<MentionsDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Mentions*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: mentions.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Mentions*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: mentions.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Mentions*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: mentions.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Mentions document from Prismic
+ *
+ * - **API ID**: `mentions`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MentionsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<MentionsDocumentData>, "mentions", Lang>;
+
 /**
  * Content for Technologie documents
  */
@@ -278,7 +349,7 @@ interface TechnologieDocumentData {
  */
 export type TechnologieDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<TechnologieDocumentData>, "technologie", Lang>;
 
-export type AllDocumentTypes = HomePageDocument | JobDocument | TechnologieDocument;
+export type AllDocumentTypes = HomePageDocument | JobDocument | MentionsDocument | TechnologieDocument;
 
 declare module "@prismicio/client" {
 	interface CreateClient {
@@ -302,6 +373,9 @@ declare module "@prismicio/client" {
 			JobDocumentData,
 			JobDocumentDataTechnologiesItem,
 			JobDocumentDataAdminEmailsItem,
+			MentionsDocument,
+			MentionsDocumentData,
+			MentionsDocumentDataSlicesSlice,
 			TechnologieDocument,
 			TechnologieDocumentData,
 			AllDocumentTypes
