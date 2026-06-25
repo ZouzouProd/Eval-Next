@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
 import "./global.css";
 import "@/styles/globals.css";
+import { BookmarkSynchronizer } from "@/components/BookmarkSynchronizer";
 import { Menu } from "@/components/Menu";
+import { getPrismicJobs } from "@/lib/get-prismic-jobs";
 
 const inter = Inter({
   weight: ["400", "700"],
@@ -9,11 +11,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jobs = await getPrismicJobs();
+  const availableJobIds = jobs.map((job) => job.id);
+
   return (
     <html lang="fr">
       <head>
@@ -23,6 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`flex flex-col min-h-dvh ${inter.className} bg-medium`}>
+        <BookmarkSynchronizer availableJobIds={availableJobIds} />
         <Menu logoAlt="Next Formation" logoSrc="/logo.png" />
         <div className="px-25 py-12.5 bg-medium">
           {children}
