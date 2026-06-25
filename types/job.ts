@@ -29,12 +29,3 @@ export type JobApplication = {
     content: string;
   };
 };
-
-export type HomePageContent = {
-  title: string;
-  introduction: string;
-};
-
-export type SiteSettings = {
-  logoText: string;
-};
