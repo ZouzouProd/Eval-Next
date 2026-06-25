@@ -14,9 +14,12 @@ type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
 };
 
+const buttonClass =
+  "inline-flex cursor-pointer items-center justify-center bg-primary px-3 py-2 text-lg text-white transition-colors hover:bg-dark hover:text-primary";
+
 export function Button({ children, className = "", ...props }: ButtonProps) {
   return (
-    <button className={`button ${className}`.trim()} {...props}>
+    <button className={`${buttonClass} ${className}`.trim()} {...props}>
       {children}
     </button>
   );
@@ -29,7 +32,11 @@ export function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   return (
-    <Link className={`button ${className}`.trim()} href={href} {...props}>
+    <Link
+      className={`${buttonClass} ${className}`.trim()}
+      href={href}
+      {...props}
+    >
       {children}
     </Link>
   );

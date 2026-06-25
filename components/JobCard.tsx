@@ -14,7 +14,7 @@ export function JobCard({
   const Heading = headingLevel;
 
   return (
-    <article className="w-fit min-w-125 bg-white">
+    <article className="w-fit min-w-125 bg-white px-5 py-8">
       <div className="flex flex-row items-center justify-between gap-4 mb-2">
         <Heading className="text-xl font-bold text-dark">
           {headingLevel === "h1" ? (

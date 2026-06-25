@@ -1,20 +1,23 @@
-"use client";
+import Link from "next/link";
 
 type TagProps = {
-  children: string;
   active?: boolean;
-  onClick?: () => void;
+  children: string;
+  href: string;
 };
 
-export function Tag({ children, active = false, onClick }: TagProps) {
+export function Tag({ active = false, children, href }: TagProps) {
   return (
-    <button
-      aria-pressed={active}
-      className={`tag${active ? " tag--active" : ""}`}
-      onClick={onClick}
-      type="button"
+    <Link
+      aria-current={active ? "page" : undefined}
+      className={`border-2 px-4 py-2 text-sm font-semibold transition-colors ${
+        active
+          ? "border-dark text-dark"
+          : "border-primary bg-white text-primary hover:border-dark hover:text-dark"
+      }`}
+      href={href}
     >
       {children}
-    </button>
+    </Link>
   );
 }

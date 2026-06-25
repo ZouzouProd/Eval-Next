@@ -47,6 +47,21 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 /**
+ * Item in *Job → Technologies*
+ */
+export interface JobDocumentDataTechnologiesItem {
+	/**
+	 * technologie field in *Job → Technologies*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: job.technologies[].technologie
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	technologie: ContentRelationshipFieldWithData<[{"id":"technologie","fields":["name"]}]>;
+}
+
+/**
  * Content for Job documents
  */
 interface JobDocumentData {
@@ -84,17 +99,6 @@ interface JobDocumentData {
 	location: prismic.KeyTextField;
 	
 	/**
-	 * technologies field in *Job*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: job.technologies
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	technologies: prismic.SelectField<"Techno 1" | "Techno 2">;
-	
-	/**
 	 * published_at field in *Job*
 	 *
 	 * - **Field Type**: Timestamp
@@ -126,6 +130,17 @@ interface JobDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	description: prismic.KeyTextField;
+	
+	/**
+	 * Technologies field in *Job*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: job.technologies[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	technologies: prismic.GroupField<Simplify<JobDocumentDataTechnologiesItem>>;
 }
 
 /**
@@ -139,7 +154,34 @@ interface JobDocumentData {
  */
 export type JobDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<JobDocumentData>, "job", Lang>;
 
-export type AllDocumentTypes = JobDocument;
+/**
+ * Content for Technologie documents
+ */
+interface TechnologieDocumentData {
+	/**
+	 * Name field in *Technologie*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: technologie.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+}
+
+/**
+ * Technologie document from Prismic
+ *
+ * - **API ID**: `technologie`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TechnologieDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<TechnologieDocumentData>, "technologie", Lang>;
+
+export type AllDocumentTypes = JobDocument | TechnologieDocument;
 
 declare module "@prismicio/client" {
 	interface CreateClient {
@@ -158,6 +200,9 @@ declare module "@prismicio/client" {
 		export type {
 			JobDocument,
 			JobDocumentData,
+			JobDocumentDataTechnologiesItem,
+			TechnologieDocument,
+			TechnologieDocumentData,
 			AllDocumentTypes
 		}
 	}

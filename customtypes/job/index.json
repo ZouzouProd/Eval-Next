@@ -31,17 +31,6 @@
           "placeholder": ""
         }
       },
-      "technologies": {
-        "type": "Select",
-        "config": {
-          "label": "technologies",
-          "placeholder": "",
-          "options": [
-            "Techno 1",
-            "Techno 2"
-          ]
-        }
-      },
       "published_at": {
         "type": "Timestamp",
         "config": {
@@ -61,6 +50,31 @@
         "config": {
           "label": "description",
           "placeholder": ""
+        }
+      },
+      "technologies": {
+        "type": "Group",
+        "config": {
+          "label": "Technologies",
+          "repeat": true,
+          "fields": {
+            "technologie": {
+              "type": "Link",
+              "config": {
+                "label": "technologie",
+                "select": "document",
+                "customtypes": [
+                  {
+                    "id": "technologie",
+                    "fields": [
+                      "name"
+                    ]
+                  }
+                ],
+                "repeat": false
+              }
+            }
+          }
         }
       }
     }

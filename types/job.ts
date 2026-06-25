@@ -4,9 +4,15 @@ export type Job = {
   title: string;
   date: string;
   technologies: string[];
+  technologyUids?: string[];
   description: string;
   adminEmails: string[];
   lastPublicationDate: string;
+};
+
+export type Technology = {
+  name: string;
+  uid: string;
 };
 
 export type JobApplication = {
