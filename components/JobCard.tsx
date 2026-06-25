@@ -14,9 +14,9 @@ export function JobCard({
   const Heading = headingLevel;
 
   return (
-    <article className="w-fit min-w-125 bg-white px-5 py-8">
-      <div className="flex flex-row items-center justify-between gap-4 mb-2">
-        <Heading className="text-xl font-bold text-dark">
+    <article className="min-w-0 w-full overflow-hidden bg-white px-5 py-8">
+      <div className="mb-2 flex min-w-0 items-center justify-between gap-4">
+        <Heading className="text-dark min-w-0 break-words text-xl font-bold">
           {headingLevel === "h1" ? (
             job.title
           ) : (
@@ -33,11 +33,11 @@ export function JobCard({
         </time>
       </p>
 
-      <p className="text-primary font-semibold font-sm mb-4">
+      <p className="text-primary mb-4 break-words text-sm font-semibold">
         {job.technologies.join(", ")}
       </p>
 
-      <p className="job-card__description">{job.description}</p>
+      <p className="line-clamp-3 break-words">{job.description}</p>
     </article>
   );
 }

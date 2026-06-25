@@ -8,19 +8,23 @@ export function Application({
   application: JobApplication;
 }) {
   return (
-    <article className="application">
-      <p className="application__date">
-        <CalendarIcon />
-        <time dateTime={application.date}>
+    <article className="border-primary w-full border-b-2 py-6">
+      <p className="text-primary mb-2 flex items-center gap-1">
+        <CalendarIcon className="text-primary" />
+        <time className="text-sm font-bold" dateTime={application.date}>
           {formatDate(application.date)}
         </time>
       </p>
-      <h2>{application.jobTitle}</h2>
-      <p className="application__technologies">
+
+      <h2 className="text-dark mb-2 text-xl font-bold">
+        {application.jobTitle}
+      </h2>
+
+      <p className="text-dark mb-4 text-sm font-semibold">
         {application.technologies.join(", ")}
       </p>
-      <p className="application__message">{application.message}</p>
-      <div aria-hidden="true" className="application__separator" />
+
+      <p className="text-primary">{application.message}</p>
     </article>
   );
 }

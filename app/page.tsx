@@ -19,15 +19,16 @@ export default async function HomePage() {
       <PrismicNextImage
         field={homePage.data.hero_image}
         className="h-[500px] w-full object-cover"
-        priority
       />
 
       <section className="py-12">
-        <h1 className="text-dark mb-8 text-3xl font-bold">
-          Dernières offres d’emploi
-        </h1>
+        <div className="border-dark mb-8 flex items-center justify-between gap-4 border-b-2">
+          <h1 className="border-primary border-b-6 text-3xl">
+            Nos dérnières opportunités
+          </h1>
+        </div>
 
-        <div className="grid gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {latestJobs.map((job) => (
             <JobCard job={job} key={job.id} />
           ))}

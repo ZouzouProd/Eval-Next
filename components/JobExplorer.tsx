@@ -34,7 +34,7 @@ export function JobExplorer({
       )}
 
       <section aria-label="Liste des offres">
-        <div className="grid gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {jobs.length ? (
             jobs.map((job) => <JobCard job={job} key={job.id} />)
           ) : (

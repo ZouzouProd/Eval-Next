@@ -29,7 +29,7 @@ export function Menu({ logoAlt = "Accueil", logoSrc }: MenuProps) {
         />
       </Link>
 
-      <nav aria-label="Navigation" className="flex items-center">
+      <nav aria-label="Navigation" className="flex items-center gap-4">
         <Link
           aria-label={`${visibleBookmarkCount} offre${visibleBookmarkCount > 1 ? "s" : ""} enregistrée${visibleBookmarkCount > 1 ? "s" : ""}`}
           className="flex cursor-pointer items-center gap-2 rounded-full px-2 py-1 text-white transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -43,6 +43,19 @@ export function Menu({ logoAlt = "Accueil", logoSrc }: MenuProps) {
             className="material-symbols-outlined text-[28px] text-white"
           >
             bookmark
+          </span>
+        </Link>
+
+        <Link
+          aria-label="Voir mon profil"
+          className="flex size-10 cursor-pointer items-center justify-center rounded-full text-white transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          href="/profile"
+        >
+          <span
+            aria-hidden="true"
+            className="material-symbols-outlined text-[28px] text-white"
+          >
+            person
           </span>
         </Link>
       </nav>

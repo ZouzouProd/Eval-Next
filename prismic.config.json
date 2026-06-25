@@ -3,7 +3,7 @@
   "routes": [
     {
       "type": "home_page",
-      "path": "/home-page"
+      "path": "/"
     }
   ]
 }

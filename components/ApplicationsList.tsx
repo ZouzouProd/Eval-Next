@@ -8,24 +8,28 @@ export function ApplicationsList() {
   const hasHydrated = useJobStore((state) => state.hasHydrated);
   const applications = useJobStore((state) => state.applications);
 
-  if (!hasHydrated) {
-    return <p className="empty-state">Chargement des candidatures…</p>;
-  }
-
-  if (!applications.length) {
-    return (
-      <div className="empty-state empty-state--action">
-        <p>Vous n’avez encore envoyé aucune candidature.</p>
-        <ButtonLink href="/">Découvrir les offres</ButtonLink>
-      </div>
-    );
-  }
-
   return (
-    <div className="applications-list">
-      {applications.map((application) => (
-        <Application application={application} key={application.id} />
-      ))}
-    </div>
+    <section className="mt-12">
+      <h2 className="text-primary text-xl font-bold">
+        Mes candidatures
+      </h2>
+
+      {!hasHydrated ? (
+        <p className="py-8">Chargement des candidatures…</p>
+      ) : applications.length ? (
+        <div className="py-4">
+          {applications.map((application) => (
+            <Application application={application} key={application.id} />
+          ))}
+        </div>
+      ) : (
+        <div className="py-8">
+          <p className="mb-4">
+            Vous n’avez encore envoyé aucune candidature.
+          </p>
+          <ButtonLink href="/jobs">Découvrir les offres</ButtonLink>
+        </div>
+      )}
+    </section>
   );
 }

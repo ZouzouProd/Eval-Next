@@ -18,18 +18,14 @@ export function BookmarkedJobs({ jobs }: { jobs: Job[] }) {
 
   return (
     <>
-      <div className="border-dark flex items-center justify-between gap-4 border-b-2">
-        <h1 className="border-primary border-b-6 text-3xl">
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-primary font-bold text-xl">
           Offres enregistrées
         </h1>
-        <span className="text-primary font-semibold">
-          {bookmarkedJobs.length} offre
-          {bookmarkedJobs.length > 1 ? "s" : ""}
-        </span>
       </div>
 
       {bookmarkedJobs.length ? (
-        <div className="grid gap-6 py-8">
+        <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-2 xl:grid-cols-3">
           {bookmarkedJobs.map((job) => (
             <JobCard job={job} key={job.id} />
           ))}
