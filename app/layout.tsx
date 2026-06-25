@@ -29,7 +29,7 @@ export default async function RootLayout({
       </head>
       <body className={`flex flex-col min-h-dvh ${inter.className} bg-medium`}>
         <BookmarkSynchronizer availableJobIds={availableJobIds} />
-        <Menu logoAlt="Next Formation" logoSrc="/logo.png" />
+        <Menu logoAlt="Next Formation" logoSrc="/Logo.png" />
         <div className="px-25 py-12.5 bg-medium">
           {children}
         </div>
