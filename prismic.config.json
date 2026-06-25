@@ -1,4 +1,9 @@
 {
   "repositoryName": "eval-next",
-  "routes": []
+  "routes": [
+    {
+      "type": "home_page",
+      "path": "/home-page"
+    }
+  ]
 }
