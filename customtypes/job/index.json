@@ -1,0 +1,63 @@
+{
+  "id": "job",
+  "label": "Job",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "company": {
+        "type": "Text",
+        "config": {
+          "label": "company",
+          "placeholder": ""
+        }
+      },
+      "location": {
+        "type": "Text",
+        "config": {
+          "label": "location",
+          "placeholder": ""
+        }
+      },
+      "technologies": {
+        "type": "Select",
+        "config": {
+          "label": "technologies",
+          "placeholder": "",
+          "options": [
+            "Techno 1",
+            "Techno 2"
+          ]
+        }
+      },
+      "published_at": {
+        "type": "Timestamp",
+        "config": {
+          "label": "published_at",
+          "placeholder": ""
+        }
+      },
+      "salary": {
+        "type": "Number",
+        "config": {
+          "label": "salary",
+          "placeholder": ""
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}
