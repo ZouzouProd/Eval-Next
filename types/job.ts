@@ -23,6 +23,11 @@ export type JobApplication = {
   date: string;
   technologies: string[];
   message: string;
+  preparedEmail: {
+    recipients: string[];
+    subject: string;
+    content: string;
+  };
 };
 
 export type HomePageContent = {

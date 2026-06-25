@@ -53,6 +53,17 @@ function getTechnologies(value: unknown): {
   };
 }
 
+function getAdminEmails(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.flatMap((item) => {
+        const email = (item as { email?: unknown })?.email;
+        return typeof email === "string" && email.trim()
+          ? [email.trim()]
+          : [];
+      })
+    : [];
+}
+
 export function mapPrismicJob(document: PrismicJobDocument): Job | null {
   if (!document.uid) {
     return null;
@@ -71,7 +82,7 @@ export function mapPrismicJob(document: PrismicJobDocument): Job | null {
     technologies: technologies.names,
     technologyUids: technologies.uids,
     description: String(document.data.description || ""),
-    adminEmails: [],
+    adminEmails: getAdminEmails(document.data.admin_emails),
     lastPublicationDate: document.last_publication_date,
   };
 }

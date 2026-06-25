@@ -30,6 +30,11 @@ export function ApplicationForm({ job }: { job: Job }) {
       date: new Date().toISOString().slice(0, 10),
       technologies: job.technologies,
       message: trimmedMessage,
+      preparedEmail: {
+        recipients: job.adminEmails,
+        subject: `Nouvelle candidature — ${job.title}`,
+        content: trimmedMessage,
+      },
     });
 
     setError("");

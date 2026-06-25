@@ -133,6 +133,21 @@ export interface JobDocumentDataTechnologiesItem {
 }
 
 /**
+ * Item in *Job → admin_emails*
+ */
+export interface JobDocumentDataAdminEmailsItem {
+	/**
+	 * email field in *Job → admin_emails*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: job.admin_emails[].email
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	email: prismic.KeyTextField;
+}
+
+/**
  * Content for Job documents
  */
 interface JobDocumentData {
@@ -212,6 +227,17 @@ interface JobDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	technologies: prismic.GroupField<Simplify<JobDocumentDataTechnologiesItem>>;
+	
+	/**
+	 * admin_emails field in *Job*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: job.admin_emails[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	admin_emails: prismic.GroupField<Simplify<JobDocumentDataAdminEmailsItem>>;
 }
 
 /**
@@ -275,6 +301,7 @@ declare module "@prismicio/client" {
 			JobDocument,
 			JobDocumentData,
 			JobDocumentDataTechnologiesItem,
+			JobDocumentDataAdminEmailsItem,
 			TechnologieDocument,
 			TechnologieDocumentData,
 			AllDocumentTypes
