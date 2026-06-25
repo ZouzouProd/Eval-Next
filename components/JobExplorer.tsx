@@ -1,17 +1,24 @@
 import { JobCard } from "@/components/JobCard";
+import { Pagination } from "@/components/Pagination";
 import { Tag } from "@/components/Tag";
 import type { Job, Technology } from "@/types/job";
 
 type JobExplorerProps = {
   activeTechnologyUid?: string;
+  currentPage?: number;
   jobs: Job[];
+  pageCount?: number;
+  paginationPath?: string;
   technologies: Technology[];
   showAllTechnologies?: boolean;
 };
 
 export function JobExplorer({
   activeTechnologyUid,
+  currentPage = 1,
   jobs,
+  pageCount = 1,
+  paginationPath = "/jobs",
   technologies,
   showAllTechnologies = true,
 }: JobExplorerProps) {
@@ -44,6 +51,12 @@ export function JobExplorer({
           )}
         </div>
       </section>
+
+      <Pagination
+        currentPage={currentPage}
+        pageCount={pageCount}
+        pathname={paginationPath}
+      />
     </>
   );
 }

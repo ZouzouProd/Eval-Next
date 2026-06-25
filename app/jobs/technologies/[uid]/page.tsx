@@ -8,12 +8,17 @@ type TechnologyJobsPageProps = {
   params: Promise<{
     uid: string;
   }>;
+  searchParams: Promise<{
+    page?: string;
+  }>;
 };
 
 export default async function TechnologyJobsPage({
   params,
+  searchParams,
 }: TechnologyJobsPageProps) {
   const { uid } = await params;
+  const { page: pageParam } = await searchParams;
   const [jobs, technologies] = await Promise.all([
     getPrismicJobs(),
     getPrismicTechnologies(),
@@ -29,6 +34,20 @@ export default async function TechnologyJobsPage({
   if (!technologyName) {
     notFound();
   }
+
+  const jobsPerPage = 6;
+  const pageCount = Math.max(
+    1,
+    Math.ceil(filteredJobs.length / jobsPerPage),
+  );
+  const requestedPage = Number.parseInt(pageParam ?? "1", 10);
+  const currentPage = Number.isNaN(requestedPage)
+    ? 1
+    : Math.min(Math.max(requestedPage, 1), pageCount);
+  const visibleJobs = filteredJobs.slice(
+    (currentPage - 1) * jobsPerPage,
+    currentPage * jobsPerPage,
+  );
 
   return (
     <main>
@@ -48,9 +67,12 @@ export default async function TechnologyJobsPage({
 
       <JobExplorer
         activeTechnologyUid={uid}
-        jobs={filteredJobs}
+        currentPage={currentPage}
+        jobs={visibleJobs}
+        pageCount={pageCount}
+        paginationPath={`/jobs/technologies/${uid}`}
         technologies={technologies}
-        showAllTechnologies = {false}
+        showAllTechnologies={false}
       />
     </main>
   );
