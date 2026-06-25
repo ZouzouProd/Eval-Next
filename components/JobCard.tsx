@@ -14,9 +14,9 @@ export function JobCard({
   const Heading = headingLevel;
 
   return (
-    <article className="job-card">
-      <div className="job-card__header">
-        <Heading className="job-card__title">
+    <article className="w-fit min-w-125 bg-white">
+      <div className="flex flex-row items-center justify-between gap-4 mb-2">
+        <Heading className="text-xl font-bold text-dark">
           {headingLevel === "h1" ? (
             job.title
           ) : (
@@ -26,22 +26,18 @@ export function JobCard({
         <BookmarkButton jobId={job.id} jobTitle={job.title} />
       </div>
 
-      <p className="job-card__date">
-        <CalendarIcon />
-        <time dateTime={job.date}>{formatDate(job.date)}</time>
+      <p className="flex-row gap-1 flex items-center">
+        <CalendarIcon className="text-primary" />
+        <time className="text-sm text-primary font-bold" dateTime={job.date}>
+          {formatDate(job.date)}
+        </time>
       </p>
 
-      <p className="job-card__technologies">
+      <p className="text-primary font-semibold font-sm mb-4">
         {job.technologies.join(", ")}
       </p>
 
       <p className="job-card__description">{job.description}</p>
-
-      {headingLevel !== "h1" ? (
-        <Link className="job-card__link" href={`/jobs/${job.uid}`}>
-          Voir l’offre
-        </Link>
-      ) : null}
     </article>
   );
 }

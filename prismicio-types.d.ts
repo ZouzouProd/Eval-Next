@@ -115,6 +115,17 @@ interface JobDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/number
 	 */
 	salary: prismic.NumberField;
+	
+	/**
+	 * description field in *Job*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: job.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
 }
 
 /**

@@ -55,6 +55,13 @@
           "label": "salary",
           "placeholder": ""
         }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "description",
+          "placeholder": ""
+        }
       }
     }
   },

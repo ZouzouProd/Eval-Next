@@ -22,9 +22,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         />
       </head>
-      <body className={`flex flex-col min-h-dvh ${inter.className}`}>
+      <body className={`flex flex-col min-h-dvh ${inter.className} bg-medium`}>
         <Menu logoAlt="Next Formation" logoSrc="/logo.png" />
-        {children}
+        <div className="px-25 py-12.5 bg-medium">
+          {children}
+        </div>
       </body>
     </html>
   );
